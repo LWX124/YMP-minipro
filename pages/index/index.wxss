@@ -101,9 +101,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 130rpx;
-  height: 130rpx;
-  margin-bottom: 20rpx;
+  width: 160rpx;
+  height: 160rpx;
+  margin-bottom: 0;
   border-radius: 24rpx;
   background: transparent;
 }
@@ -145,6 +145,7 @@
   font-size: 28rpx;
   font-weight: 500;
   color: #333;
+  margin-top: 60rpx;
 }
 
 /* ---- 推荐标签 ---- */
