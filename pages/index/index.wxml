@@ -17,36 +17,32 @@
   <!-- 白色主卡片（圆角上叠 Banner） -->
   <view class="main-card">
 
-    <!-- 必备神器说明栏 -->
-    <view class="section-header">
-      <view class="section-header-left">
-        <text class="section-header-title">必备神器</text>
-        <text class="section-header-desc">推荐使用录制事故视频</text>
-      </view>
-      <image class="section-header-car" src="/images/apply/car_crash.png" mode="aspectFit" />
-    </view>
+    <!-- 必备神器标题 -->
+    <text class="section-title">必备神器</text>
 
     <!-- 两个卡片横向排列 -->
     <view class="action-cards-row">
       <!-- 录制视频卡片（推荐） -->
       <view class="action-card-small video-card" bindtap="goRecordVideo">
-        <image class="action-card-small-bg" src="/images/apply/group_card_video.png" mode="aspectFill" />
-        <image class="recommend-badge-small" src="/images/apply/badge_recommend.png" mode="aspectFit" />
-        <text class="action-card-small-title">开始录制</text>
-        <text class="action-card-small-subtitle">事故视频</text>
+        <view class="recommend-badge">
+          <image class="recommend-badge-bg" src="/images/apply/badge_recommend.png" mode="aspectFill" />
+          <text class="recommend-badge-text">推荐</text>
+        </view>
+        <view class="icon-shimmer-wrap">
+          <image class="action-card-small-icon" src="/images/apply/group_card_video.png" mode="aspectFit" />
+        </view>
+        <text class="action-card-small-label">录制事故视频</text>
       </view>
 
       <!-- 拍照上传卡片 -->
       <view class="action-card-small photo-card" bindtap="goTakePhoto">
-        <image class="action-card-small-bg" src="/images/apply/group_card_photo.png" mode="aspectFill" />
-        <text class="action-card-small-title">拍照上传</text>
-        <text class="action-card-small-subtitle">事故照片</text>
+        <image class="action-card-small-icon" src="/images/apply/group_card_photo.png" mode="aspectFit" />
+        <text class="action-card-small-label">上传事故照片</text>
       </view>
     </view>
 
-    <!-- 绑定认证按钮 -->
+    <!-- 领取奖励按钮 -->
     <view class="bind-btn" bindtap="goUploadHistory">
-      <image class="bind-btn-img" src="/images/apply/bind_btn.png" mode="aspectFit" />
       <text class="bind-btn-text">领取奖励</text>
     </view>
 

@@ -40,7 +40,7 @@
   top: 0;
   left: 0;
   width: 750rpx;
-  height: 588rpx;
+  height: 654rpx;
   /* display: block; */
 }
 
@@ -54,47 +54,16 @@
   border-radius: 48rpx 48rpx 24rpx 24rpx;
   border: 2rpx solid #fff;
   padding: 0 40rpx 60rpx;
-  margin-bottom: 58rpx;
+  /* margin-bottom: 58rpx; */
 }
 
-/* ---- 必备神器说明栏 ---- */
-.section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 170rpx;
-  padding: 0 20rpx 0 40rpx;
-  border-radius: 48rpx 48rpx 0 0;
-  border: 2rpx solid rgba(255, 255, 255, 0.6);
-  margin: 0 -40rpx;
-  margin-top: 40rpx;
-  box-sizing: border-box;
-}
-
-.section-header-left {
-  display: flex;
-  flex-direction: column;
-  gap: 16rpx;
-}
-
-.section-header-title {
-  font-size: 40rpx;
+/* ---- 必备神器标题 ---- */
+.section-title {
+  display: block;
+  font-size: 36rpx;
   font-weight: 600;
   color: #010005;
-  line-height: 1.4;
-}
-
-.section-header-desc {
-  font-size: 26rpx;
-  color: #888;
-  line-height: 1;
-}
-
-.section-header-car {
-  width: 360rpx;
-  height: 200rpx;
-  flex-shrink: 0;
-  margin-right: -10rpx;
+  padding: 40rpx 0 0;
 }
 
 /* ---- 两个卡片横向排列 ---- */
@@ -102,120 +71,126 @@
   display: flex;
   justify-content: space-between;
   gap: 24rpx;
-  margin-top: 24rpx;
+  margin-top: 36rpx;
   margin-bottom: 24rpx;
 }
 
 .action-card-small {
   position: relative;
   flex: 1;
-  height: 448rpx;
+  height: 400rpx;
   background: #F5F7FA;
+  border-radius: 24rpx;
   padding: 24rpx;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
-.action-card-small-bg {
+.video-card {
+  border: 2rpx solid #1FC2A2;
+  background: #DDF3F3;
+}
+
+.icon-shimmer-wrap {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130rpx;
+  height: 130rpx;
+  margin-bottom: 20rpx;
+  border-radius: 24rpx;
+  background: transparent;
+}
+
+.icon-shimmer-wrap::after {
+  content: '';
   position: absolute;
-  top: 0;
+  top: -100%;
+  left: -100%;
+  width: 200%;
+  height: 190%;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(255, 255, 255, 0.15) 42%,
+    rgba(255, 255, 255, 0.3) 45%,
+    rgba(255, 255, 255, 0.15) 48%,
+    transparent 55%,
+    transparent 100%
+  );
+  z-index: 3;
+  animation: shimmer 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% { transform: translate(-50%, -50%); }
+  30% { transform: translate(50%, 50%); }
+  100% { transform: translate(50%, 50%); }
+}
+
+.action-card-small-icon {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.action-card-small-label {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+/* ---- 推荐标签 ---- */
+.recommend-badge {
+  position: absolute;
   left: 0;
+  top: 0;
+  border-radius: 24rpx 0 16rpx 0;
+  overflow: hidden;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rpx 20rpx;
+}
+
+.recommend-badge-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
   z-index: 0;
 }
 
-.recommend-badge-small {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 125rpx;
-  height: 44rpx;
-  z-index: 2;
-  overflow: hidden;
-}
-
-.recommend-badge-small::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.3) 40%,
-    rgba(255, 255, 255, 0.6) 50%,
-    rgba(255, 255, 255, 0.3) 60%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  z-index: 1;
-  animation: shimmer 3s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes shimmer {
-  0% {
-    left: -100%;
-  }
-  60% {
-    left: 150%;
-  }
-  100% {
-    left: 150%;
-  }
-}
-
-.action-card-small-title {
+.recommend-badge-text {
   position: relative;
   z-index: 1;
-  font-size: 28rpx;
+  font-size: 26rpx;
   font-weight: 600;
-  color: #1C2F50 ;
-  line-height: 1.3;
-  margin-top: 80rpx;
-  margin-left: 30rpx;
+  color: #fff;
 }
 
-.action-card-small-subtitle {
-  position: relative;
-  z-index: 1;
-  font-size: 40rpx;
-  font-weight: 600;
-  color: #010005;
-  line-height: 1.3;
-  margin-top: 12rpx;
-  margin-left: 30rpx;
-  margin-bottom: 20rpx;
-}
-
-/* ---- 绑定认证按钮 ---- */
+/* ---- 领取奖励按钮 ---- */
 .bind-btn {
-  margin-top: 36rpx;
+  margin-top: 80rpx;
   width: 100%;
   height: 96rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-}
-
-.bind-btn-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 88rpx;
-  z-index: 0;
+  background: linear-gradient(to bottom, #5DE4AF, #22C3A2);
+  border-radius: 48rpx;
 }
 
 .bind-btn-text {
-  position: relative;
-  z-index: 1;
   font-size: 32rpx;
   font-weight: 500;
   color: #FFFFFF;
