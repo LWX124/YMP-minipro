@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "TTP",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "loading-overlay": "/components/loading/loading"
-  }
-}
