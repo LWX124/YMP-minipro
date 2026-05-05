@@ -34,8 +34,8 @@
 /* ---- 顶部区域（含背景图和用户信息） ---- */
 .top-section {
   position: relative;
-  width: 750rpx;
-  padding-bottom: 70rpx;
+  width: 100%;
+  padding-bottom: 30rpx;
   box-sizing: border-box;
   overflow: visible;
   margin-top: calc(-1 * var(--nav-bar-height, 0px));
@@ -52,15 +52,21 @@
 }
 
 /* ---- 用户信息区域 ---- */
-/* 竖向：头像 + 名字 + ID */
+/* 横向：头像在左，名字+ID在右 */
 .user-section {
   position: relative;
   z-index: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 24rpx;
-  padding: 42rpx 0rpx 0;
+  gap: 32rpx;
+  padding: 42rpx 40rpx 0;
+}
+
+.user-info-right {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
 }
 
 /* 头像选择按钮（重置button样式） */
@@ -88,6 +94,7 @@
   height: 148rpx;
   border-radius: 50%;
   flex-shrink: 0;
+  margin-left: 20rpx;
   background: #f0f0f0;
   box-sizing: border-box;
 }
@@ -109,7 +116,6 @@
   font-weight: 600;
   color: #010005;
   line-height: 40rpx;
-  text-align: center;
 }
 
 /* ID + 复制 */
@@ -122,6 +128,7 @@
 .user-id-text {
   font-size: 28rpx;
   color: #888;
+  margin-top: 16rpx;
   line-height: 28rpx;
 }
 
@@ -130,6 +137,7 @@
   color: #666;
   padding: 2rpx 16rpx;
   border-radius: 24rpx;
+  margin-top: 16rpx;
   border: 1rpx solid #c8c8c8;
   line-height: 24rpx;
 }
@@ -139,7 +147,6 @@
   font-size: 24rpx;
   color: #888;
   display: block;
-  text-align: center;
 }
 
 .login-btn {
@@ -162,10 +169,9 @@
 .content-area {
   position: relative;
   width: 750rpx;
-  padding: 0 32rpx 60rpx;
+  padding: 0 32rpx 0;
   box-sizing: border-box;
   background: #eceef2;
-  margin-top: -70rpx;
 }
 
 /* ---- 奖励统计卡片 ---- */
@@ -176,11 +182,12 @@
   align-items: center;
   justify-content: space-between;
   height: 140rpx;
-  width: 686rpx;
-  margin: 0 32rpx;
   margin-top: 24rpx;
-  padding: 0 20rpx;
+  margin-left: 32rpx;
+  margin-right: 32rpx;
+  border-radius: 24rpx;
   box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .stat-item {
@@ -205,17 +212,16 @@
   font-size: 24rpx;
   color: #888;
   margin-top: 16rpx;
-  line-height: 24rpx;
+  /* line-height: 24rpx; */
 }
 
 /* ---- 广告 banner 卡片 ---- */
 .ad-banner-card {
   width: 100%;
-  height: 160rpx;
+  height: 184rpx;
   border-radius: 24rpx;
   margin-bottom: 24rpx;
   overflow: hidden;
-  background: #fff;
 }
 
 .ad-banner-img {

@@ -18,9 +18,11 @@
       <view class="avatar avatar-circle avatar-placeholder">
         <text class="avatar-text">👤</text>
       </view>
-      <text class="nickname">游客</text>
-      <text class="guest-hint">登录后查看更多功能</text>
-      <button class="login-btn" bindtap="handleLogin">立即登录</button>
+      <view class="user-info-right">
+        <text class="nickname">游客</text>
+        <text class="guest-hint">登录后查看更多功能</text>
+        <button class="login-btn" bindtap="handleLogin">立即登录</button>
+      </view>
     </view>
 
     <!-- 已登录 -->
@@ -33,10 +35,12 @@
       <button wx:else class="avatar-choose-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
         <image class="avatar avatar-circle" src="{{userInfo.headImg}}" mode="aspectFill" />
       </button>
-      <text class="nickname">{{userInfo.name || '微信用户'}}</text>
-      <view class="user-id-row">
-        <text class="user-id-text">ID：{{userInfo.userId || ''}}</text>
-        <view class="copy-tag" bindtap="copyId">复制</view>
+      <view class="user-info-right">
+        <text class="nickname">{{userInfo.name || '微信用户'}}</text>
+        <view class="user-id-row">
+          <text class="user-id-text">ID：{{userInfo.userId || ''}}</text>
+          <view class="copy-tag" bindtap="copyId">复制</view>
+        </view>
       </view>
     </view>
 
