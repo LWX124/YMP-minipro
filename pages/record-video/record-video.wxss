@@ -1,0 +1,502 @@
+.page {
+  height: 100vh;
+  background: #000;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ========== Camera / Video 全屏 ========== */
+.camera-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.preview-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.preview-container .preview-video {
+  width: 100%;
+  height: 100%;
+}
+
+.preview-duration {
+  position: absolute;
+  right: 24rpx;
+  bottom: 24rpx;
+  color: #fff;
+  font-size: 28rpx;
+  font-family: monospace;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* ========== 降级占位 ========== */
+.fallback-placeholder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.fallback-text {
+  color: #fff;
+  font-size: 32rpx;
+  margin-bottom: 12rpx;
+}
+
+.fallback-sub {
+  color: #888;
+  font-size: 24rpx;
+}
+
+/* ========== 自定义导航栏 ========== */
+.custom-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
+}
+
+.nav-content {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 16rpx;
+}
+
+.nav-back {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-back-arrow {
+  width: 20rpx;
+  height: 20rpx;
+  border-left: 4rpx solid #fff;
+  border-bottom: 4rpx solid #fff;
+  transform: rotate(45deg);
+  margin-left: 8rpx;
+}
+
+.nav-title {
+  color: #fff;
+  font-size: 34rpx;
+  font-weight: 500;
+  margin-left: 8rpx;
+}
+
+/* ========== 引导提示（左下角常驻） ========== */
+.guide-tips {
+  position: absolute;
+  left: 24rpx;
+  bottom: 180rpx;
+  z-index: 5;
+}
+
+.guide-tip-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.guide-check-icon {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  background: #07c160;
+  color: #fff;
+  font-size: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10rpx;
+  flex-shrink: 0;
+}
+
+.guide-tip-text {
+  color: #fff;
+  font-size: 24rpx;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* ========== 底部控制区 ========== */
+.bottom-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx 40rpx;
+  padding-bottom: calc(40rpx + env(safe-area-inset-bottom));
+  z-index: 10;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+}
+
+/* ========== 计时器 ========== */
+.timer-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24rpx;
+  gap: 12rpx;
+}
+
+.recording-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background: #ff4d4f;
+}
+
+.dot-pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.dot-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.timer-text {
+  color: #fff;
+  font-size: 36rpx;
+  font-family: monospace;
+  letter-spacing: 2rpx;
+}
+
+.timer-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* ========== 控制按钮行 ========== */
+.control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 40rpx;
+}
+
+.ctrl-placeholder {
+  width: 80rpx;
+}
+
+/* 暂停按钮 (黄色圆形) */
+.pause-circle-btn {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+  border: 6rpx solid #FFD700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rpx;
+}
+
+.pause-icon-bar {
+  width: 8rpx;
+  height: 36rpx;
+  background: #FFD700;
+  border-radius: 4rpx;
+}
+
+/* 切换摄像头 */
+.switch-btn {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.switch-camera-icon {
+  width: 40rpx;
+  height: 36rpx;
+  border: 4rpx solid #fff;
+  border-radius: 6rpx;
+  position: relative;
+}
+
+.switch-camera-icon::after {
+  content: '';
+  position: absolute;
+  top: -12rpx;
+  left: 8rpx;
+  width: 16rpx;
+  height: 10rpx;
+  border-left: 4rpx solid #fff;
+  border-top: 4rpx solid #fff;
+  border-right: 4rpx solid #fff;
+  border-radius: 4rpx 4rpx 0 0;
+}
+
+/* 重拍按钮 */
+.preview-row {
+  justify-content: center;
+  gap: 120rpx;
+}
+
+.rerecord-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  border: 4rpx solid rgba(255, 255, 255, 0.6);
+}
+
+.rerecord-icon-wrap {
+  width: 44rpx;
+  height: 44rpx;
+  border: 4rpx solid #fff;
+  border-right-color: transparent;
+  border-radius: 50%;
+  position: relative;
+}
+
+.rerecord-arrow {
+  position: absolute;
+  top: -4rpx;
+  right: -2rpx;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10rpx 12rpx 0;
+  border-color: transparent #fff transparent transparent;
+}
+
+.rerecord-text {
+  color: #fff;
+  font-size: 24rpx;
+  margin-top: 6rpx;
+}
+
+/* 确定按钮 (黄色) */
+.confirm-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  background: #FFD700;
+}
+
+.confirm-check {
+  width: 28rpx;
+  height: 16rpx;
+  border-left: 5rpx solid #333;
+  border-bottom: 5rpx solid #333;
+  transform: rotate(-45deg);
+  margin-bottom: 4rpx;
+}
+
+.confirm-text {
+  color: #333;
+  font-size: 24rpx;
+  font-weight: 500;
+  margin-top: 6rpx;
+}
+
+/* ========== 上传遮罩 ========== */
+.uploading-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.uploading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32rpx;
+}
+
+.uploading-spinner {
+  display: flex;
+  gap: 16rpx;
+}
+
+.spinner-dot {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background: #fff;
+  animation: bounce 1.2s ease-in-out infinite;
+}
+
+.spinner-dot:nth-child(2) {
+  animation-delay: 0.16s;
+}
+
+.spinner-dot:nth-child(3) {
+  animation-delay: 0.32s;
+}
+
+.uploading-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 28rpx;
+}
+
+/* ========== 右侧缩放按钮组 ========== */
+.zoom-controls {
+  position: absolute;
+  right: 24rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+  z-index: 8;
+}
+
+.zoom-btn {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 16rpx;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.zoom-btn-text {
+  color: #fff;
+  font-size: 22rpx;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.zoom-btn-icon {
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: 300;
+}
+
+.zoom-display-btn {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.zoom-display-text {
+  color: #FFD700;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+/* ========== 动画 ========== */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0.4);
+    opacity: 0.3;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ---- 手机号授权底部弹窗 ---- */
+.phone-sheet-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+}
+
+.phone-sheet {
+  width: 100%;
+  background: #fff;
+  border-radius: 32rpx 32rpx 0 0;
+  padding: 32rpx 40rpx 0;
+  padding-bottom: calc(60rpx + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.phone-sheet-bar {
+  width: 80rpx;
+  height: 8rpx;
+  background: #e0e0e0;
+  border-radius: 4rpx;
+  margin-bottom: 32rpx;
+}
+
+.phone-sheet-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 16rpx;
+}
+
+.phone-sheet-desc {
+  font-size: 26rpx;
+  color: #999;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 48rpx;
+  padding: 0 20rpx;
+}
+
+.phone-sheet-btn {
+  width: 100%;
+  background: #07c160;
+  color: #fff;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  border: none;
+  padding: 24rpx 0;
+}
+
+.phone-sheet-btn::after {
+  border: none;
+}
+
+.sheet-skip-btn {
+  text-align: center;
+  font-size: 28rpx;
+  color: #999;
+  padding: 20rpx 0 16rpx;
+}

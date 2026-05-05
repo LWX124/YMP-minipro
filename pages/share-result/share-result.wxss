@@ -1,0 +1,160 @@
+/* ===== 分享结果页 ===== */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background-image: url('/images/share/bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 返回按钮 */
+.back-btn {
+  position: absolute;
+  left: 32rpx;
+  top: 80rpx;
+  width: 48rpx;
+  height: 48rpx;
+  z-index: 10;
+}
+
+/* 白色主卡片 */
+.card {
+  position: relative;
+  z-index: 1;
+  width: 686rpx;
+  margin-top: 120rpx;
+  padding: 60rpx 40rpx 50rpx;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0rpx 0rpx 48rpx 0rpx rgba(0, 0, 0, 0.1);
+  border-radius: 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 奖励图标 */
+.reward-icon {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 24rpx;
+}
+
+/* 奖励文案 */
+.reward-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.reward-line {
+  font-family: PingFang SC, PingFang SC;
+  font-weight: 600;
+  font-size: 40rpx;
+  color: #262626;
+  text-align: center;
+  line-height: 60rpx;
+}
+
+.reward-highlight {
+  color: #FF4D4F;
+}
+
+/* 固定横幅图容器 */
+.banner-wrap {
+  width: 100%;
+  height: 340rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+  position: relative;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+}
+
+.banner-video {
+  width: 100%;
+  height: 100%;
+  border-radius: 24rpx;
+}
+
+.banner-wrap--video {
+  height: 420rpx;
+}
+
+.play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80rpx;
+  height: 80rpx;
+}
+
+/* 立即分享按钮 */
+.btn-share {
+  height: 100rpx;
+  background: linear-gradient(135deg, #6B9EFF 0%, #5B8EFF 100%);
+  border-radius: 50rpx;
+  font-family: PingFang SC, PingFang SC;
+  font-weight: 600;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  line-height: 100rpx;
+  text-align: center;
+  border: none;
+  padding: 0;
+  width: 100% !important;
+  margin: 0 0 24rpx 0;
+  box-sizing: border-box;
+}
+
+/* 微信按钮默认样式覆盖 */
+.btn-share::after {
+  border: none;
+}
+
+/* 底部按钮行 */
+.btn-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.btn-retake {
+  width: 280rpx;
+  height: 100rpx;
+  box-sizing: border-box;
+  border-radius: 50rpx;
+  border: 2rpx solid #E0E0E0;
+  background: #FFFFFF;
+  font-family: PingFang SC, PingFang SC;
+  font-weight: 500;
+  font-size: 32rpx;
+  color: #666666;
+  line-height: 100rpx;
+  text-align: center;
+}
+
+.btn-history {
+  width: 280rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  background: linear-gradient(135deg, #6B9EFF 0%, #5B8EFF 100%);
+  font-family: PingFang SC, PingFang SC;
+  font-weight: 500;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  line-height: 100rpx;
+  text-align: center;
+}

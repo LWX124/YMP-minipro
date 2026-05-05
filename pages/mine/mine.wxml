@@ -1,0 +1,136 @@
+<view class="page">
+  <loading-overlay visible="{{showLoginLoading}}" text="{{loginLoadingText}}" />
+
+  <!-- 自定义导航栏 -->
+  <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
+    <view class="custom-nav-content">
+      <text class="custom-nav-title">我的</text>
+    </view>
+  </view>
+
+  <!-- 顶部区域（含背景图和用户信息） -->
+  <view class="top-section" style="padding-top: {{navBarHeight}}px;">
+    <!-- 背景图 -->
+    <image class="bg-profile" src="/images/mine/bg_profile.png" mode="aspectFill" />
+
+    <!-- 游客 -->
+    <view wx:if="{{!isLogin}}" class="user-section">
+      <view class="avatar avatar-circle avatar-placeholder">
+        <text class="avatar-text">👤</text>
+      </view>
+      <text class="nickname">游客</text>
+      <text class="guest-hint">登录后查看更多功能</text>
+      <button class="login-btn" bindtap="handleLogin">立即登录</button>
+    </view>
+
+    <!-- 已登录 -->
+    <view wx:if="{{isLogin}}" class="user-section">
+      <button wx:if="{{!userInfo.headImg}}" class="avatar-choose-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+        <view class="avatar avatar-circle avatar-placeholder">
+          <text class="avatar-text">👤</text>
+        </view>
+      </button>
+      <button wx:else class="avatar-choose-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+        <image class="avatar avatar-circle" src="{{userInfo.headImg}}" mode="aspectFill" />
+      </button>
+      <text class="nickname">{{userInfo.name || '微信用户'}}</text>
+      <view class="user-id-row">
+        <text class="user-id-text">ID：{{userInfo.userId || ''}}</text>
+        <view class="copy-tag" bindtap="copyId">复制</view>
+      </view>
+    </view>
+
+    <!-- 奖励统计（仅登录后） - 移到top-section内部 -->
+    <view wx:if="{{isLogin}}" class="stats-card">
+      <view class="stat-item">
+        <text class="stat-num">{{statistics.totalReward}}</text>
+        <text class="stat-label">合计奖励</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">{{statistics.caseReward || 0}}</text>
+        <text class="stat-label">报案奖励</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">{{statistics.taskReward || 0}}</text>
+        <text class="stat-label">任务奖励</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 内容区域（无白色卡片包裹） -->
+  <view class="content-area">
+
+    <!-- 跑车必备神器 Banner -->
+    <view class="ad-banner-card">
+      <image class="ad-banner-img" src="/images/mine/banner_ad.png" mode="aspectFill" />
+    </view>
+
+    <!-- 功能网格 -->
+    <view class="func-card">
+      <view class="func-item" bindtap="goUploadHistory">
+        <image class="func-icon-img" src="/images/mine/icon_upload_record.png" mode="aspectFit" />
+        <text class="func-name">上传记录</text>
+      </view>
+      <view class="func-item" bindtap="onComingSoon">
+        <image class="func-icon-img" src="/images/mine/icon_tutorial.png" mode="aspectFit" />
+        <text class="func-name">使用教程</text>
+      </view>
+      <view class="func-item" bindtap="onComingSoon">
+        <image class="func-icon-img" src="/images/mine/icon_notice.png" mode="aspectFit" />
+        <text class="func-name">公告</text>
+      </view>
+      <view class="func-item">
+        <button class="contact-btn" open-type="contact">
+          <image class="func-icon-img" src="/images/mine/icon_service.png" mode="aspectFit" />
+          <text class="func-name">在线客服</text>
+        </button>
+      </view>
+      <view class="func-item" bindtap="onComingSoon">
+        <image class="func-icon-img" src="/images/mine/icon_invite.png" mode="aspectFit" />
+        <text class="func-name">邀请好友</text>
+      </view>
+      <view class="func-item" bindtap="onComingSoon">
+        <image class="func-icon-img" src="/images/mine/icon_points.png" mode="aspectFit" />
+        <text class="func-name">我的积分</text>
+      </view>
+    </view>
+
+    <!-- 底部按钮 -->
+    <view class="bottom-btns-card">
+      <button class="bottom-btn share-btn" open-type="share">
+        <image class="bottom-btn-img" src="/images/mine/rect_share.png" mode="aspectFill" />
+        <text class="bottom-btn-text">分享好友</text>
+      </button>
+      <view class="bottom-btn welfare-btn" bindtap="onWelfare">
+        <image class="bottom-btn-img" src="/images/mine/rect_welfare.png" mode="aspectFill" />
+        <text class="bottom-btn-text">加福利官</text>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 福利官弹窗 -->
+  <view class="modal-mask" wx:if="{{showWelfareModal}}" bindtap="closeWelfareModal">
+    <view class="modal-content" catchtap="">
+      <text class="modal-title">添加福利官微信</text>
+      <image class="qrcode-img" src="/images/kefu.jpg" mode="widthFix" show-menu-by-longpress="{{true}}" />
+      <text class="modal-hint">长按二维码识别添加福利官</text>
+      <view class="modal-close" bindtap="closeWelfareModal">关闭</view>
+    </view>
+  </view>
+
+  <!-- 昵称授权底部弹窗 -->
+  <view class="profile-sheet-mask {{showProfileSheet ? 'profile-sheet-mask-show' : ''}}" bindtap="closeProfileSheet">
+    <view class="profile-sheet {{showProfileSheet ? 'profile-sheet-show' : ''}}" catchtap="">
+      <view class="profile-sheet-bar"></view>
+      <text class="profile-sheet-title">设置昵称</text>
+      <text class="profile-sheet-desc">点击输入框后，在键盘上方选择「微信昵称」即可一键填入</text>
+      <view class="profile-nickname-row">
+        <text class="nickname-icon">✏️</text>
+        <input class="profile-nickname-input" type="nickname" placeholder="点击此处，选择微信昵称" value="{{wxNickname}}" bindinput="onNicknameChange" focus="{{showProfileSheet}}" />
+      </view>
+      <view class="profile-confirm-btn {{wxNickname ? '' : 'btn-disabled'}}" bindtap="confirmProfile">确认</view>
+      <view class="sheet-skip-btn" bindtap="closeProfileSheet">暂不设置</view>
+    </view>
+  </view>
+</view>

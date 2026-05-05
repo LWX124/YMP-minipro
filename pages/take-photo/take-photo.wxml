@@ -1,0 +1,74 @@
+<view class="page">
+  <view class="container">
+    <!-- 已拍照片列表 -->
+    <view class="photo-grid" wx:if="{{photos.length > 0}}">
+      <view class="photo-item" wx:for="{{photos}}" wx:key="index">
+        <image class="photo-img" src="{{item}}" mode="aspectFill" bindtap="previewPhoto" data-index="{{index}}"></image>
+        <view class="photo-delete" bindtap="deletePhoto" data-index="{{index}}">×</view>
+      </view>
+      <!-- 添加更多按钮 -->
+      <view class="photo-item add-btn" bindtap="takeMore" wx:if="{{photos.length < 9}}">
+        <text class="add-icon">+</text>
+        <text class="add-text">继续拍照</text>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{photos.length === 0}}">
+      <view class="empty-icon">📷</view>
+      <text class="empty-text">点击下方按钮开始拍照</text>
+      <text class="empty-hint">最多可拍9张照片</text>
+    </view>
+
+    <!-- 底部操作区 -->
+    <view class="bottom-area">
+      <view class="photo-count" wx:if="{{photos.length > 0}}">
+        已拍 {{photos.length}}/9 张
+      </view>
+      <view class="btn-row">
+        <view class="btn-take" bindtap="takePhoto" wx:if="{{photos.length === 0}}">
+          开始拍照
+        </view>
+        <view class="btn-upload" bindtap="uploadPhotos" wx:if="{{photos.length > 0}}">
+          上传 ({{photos.length}}张)
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 上传动画遮罩 -->
+  <view class="uploading-mask" wx:if="{{uploading}}">
+    <view class="uploading-content">
+      <!-- 环形进度 -->
+      <view class="progress-ring">
+        <view class="ring-bg"></view>
+        <view class="ring-left-wrap">
+          <view class="ring-half ring-left" style="transform: rotate({{uploadPercent <= 50 ? (uploadPercent * 3.6 - 180) : 0}}deg)"></view>
+        </view>
+        <view class="ring-right-wrap">
+          <view class="ring-half ring-right" style="transform: rotate({{uploadPercent > 50 ? ((uploadPercent - 50) * 3.6 - 180) : -180}}deg)"></view>
+        </view>
+        <view class="ring-inner">
+          <text class="ring-percent">{{uploadPercent}}%</text>
+        </view>
+      </view>
+      <text class="uploading-text">正在上传 {{uploadedCount}}/{{photos.length}}</text>
+      <text class="uploading-hint">请勿退出页面</text>
+    </view>
+  </view>
+
+  <!-- 手机号授权底部弹窗 -->
+  <view class="phone-sheet-mask" wx:if="{{showPhoneModal}}" bindtap="closePhoneModal">
+    <view class="phone-sheet" catchtap="">
+      <view class="phone-sheet-bar"></view>
+      <text class="phone-sheet-title">绑定手机号</text>
+      <text class="phone-sheet-desc">绑定手机号后可正常领取奖励，我们承诺不会泄露您的信息</text>
+      <button
+        class="phone-sheet-btn"
+        open-type="getPhoneNumber"
+        bindgetphonenumber="onGetPhoneNumber"
+      >一键授权手机号</button>
+      <view class="sheet-skip-btn" bindtap="closePhoneModal">暂不绑定</view>
+    </view>
+  </view>
+</view>
